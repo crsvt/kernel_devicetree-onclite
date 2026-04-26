@@ -1,0 +1,517 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+&tlmm {
+	/* Speaker amp reset — GPIO139 */
+	pmx_reset_pa_active {
+		reset_pa_active: reset_pa_active {
+			mux {
+				pins = "gpio139";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio139";
+				drive-strength = <8>;
+				output-high;
+				bias-pull-up;
+			};
+		};
+	};
+
+	pmx_reset_pa_suspend {
+		reset_pa_suspend: reset_pa_suspend {
+			mux {
+				pins = "gpio139";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio139";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	/* LCD reset (GPIO61) and backlight enable (GPIO136) */
+	pmx_mdss {
+		mdss_dsi_active: mdss_dsi_active {
+			mux {
+				pins = "gpio61", "gpio136";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio61", "gpio136";
+				drive-strength = <8>;
+				bias-disable = <0>;
+				output-high;
+			};
+		};
+
+		mdss_dsi_suspend: mdss_dsi_suspend {
+			mux {
+				pins = "gpio61", "gpio136";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio61", "gpio136";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+
+	/* TE sync — GPIO24 */
+	pmx_mdss_te {
+		mdss_te_active: mdss_te_active {
+			mux {
+				pins = "gpio24";
+				function = "mdp_vsync";
+			};
+
+			config {
+				pins = "gpio24";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		mdss_te_suspend: mdss_te_suspend {
+			mux {
+				pins = "gpio24";
+				function = "mdp_vsync";
+			};
+
+			config {
+				pins = "gpio24";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+
+	/* MCLK0 — rear main camera (GPIO26) */
+	cam_sensor_mclk0_default {
+		mux {
+			pins = "gpio26";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio26";
+			bias-disable;
+			drive-strength = <4>;
+		};
+	};
+
+	cam_sensor_mclk0_sleep {
+		mux {
+			pins = "gpio26";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio26";
+			bias-pull-down;
+			drive-strength = <4>;
+		};
+	};
+
+	/* Rear main camera reset (GPIO40) and depth VDIG (GPIO39) */
+	cam_sensor_rear_default {
+		mux {
+			pins = "gpio40", "gpio39";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio40", "gpio39";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_rear_sleep {
+		mux {
+			pins = "gpio40", "gpio39";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio40", "gpio39";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	/* Rear main camera VANA enable — GPIO138 */
+	cam_sensor_rear_vdig: cam_sensor_rear_vdig {
+		mux {
+			pins = "gpio138";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio138";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_rear_vdig_sleep: cam_sensor_rear_vdig_sleep {
+		mux {
+			pins = "gpio138";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio138";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	/* MCLK1 — rear depth / front auxiliary camera (GPIO27) */
+	cam_sensor_mclk1_default {
+		mux {
+			pins = "gpio27";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio27";
+			bias-disable;
+			drive-strength = <4>;
+		};
+	};
+
+	cam_sensor_mclk1_sleep {
+		mux {
+			pins = "gpio27";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio27";
+			bias-pull-down;
+			drive-strength = <4>;
+		};
+	};
+
+	/* Front camera reset (GPIO131) and standby (GPIO132) */
+	cam_sensor_front_default {
+		mux {
+			pins = "gpio131", "gpio132";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio131", "gpio132";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_front_sleep {
+		mux {
+			pins = "gpio131", "gpio132";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio131", "gpio132";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	/* MCLK2 — front main camera (GPIO28) */
+	cam_sensor_mclk2_default {
+		mux {
+			pins = "gpio28";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio28";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_mclk2_sleep {
+		mux {
+			pins = "gpio28";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio28";
+			bias-pull-down;
+			drive-strength = <2>;
+		};
+	};
+
+	/* Rear depth camera reset — GPIO129 only (standby GPIO130 removed) */
+	cam_sensor_front1_default {
+		mux {
+			pins = "gpio129";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio129";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_front1_sleep {
+		mux {
+			pins = "gpio129";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio129";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	/* Touch IRQ — GPIO65 */
+	ts_int_default {
+		mux {
+			pins = "gpio65";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio65";
+			drive-strength = <16>;
+			input-enable;
+			bias-disable;
+		};
+	};
+
+	ts_int_output_high {
+		mux {
+			pins = "gpio65";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio65";
+			drive-strength = <8>;
+			output-high;
+			bias-pull-up;
+		};
+	};
+
+	ts_int_output_low {
+		mux {
+			pins = "gpio65";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio65";
+			drive-strength = <8>;
+			bias-pull-down;
+			output-low;
+		};
+	};
+
+	ts_int_input {
+		mux {
+			pins = "gpio65";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio65";
+			drive-strength = <8>;
+			input-enable;
+			bias-disable;
+		};
+	};
+
+	/* Touch RST — GPIO64 */
+	pmx_ts_reset_release {
+		ts_as_reset: ts_as_reset {
+			mux {
+				pins = "gpio64";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio64";
+				drive-strength = <8>;
+				input-enable;
+				bias-disable;
+			};
+		};
+	};
+
+	pmx_ts_reset_suspend {
+		ts_reset_suspend: ts_reset_suspend {
+			mux {
+				pins = "gpio64";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio64";
+				drive-strength = <8>;
+				bias-pull-down;
+				output-low;
+			};
+		};
+	};
+
+	pmx_ts_reset_active {
+		ts_reset_active: ts_reset_active {
+			mux {
+				pins = "gpio64";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio64";
+				drive-strength = <8>;
+				bias-pull-up;
+				output-high;
+			};
+		};
+	};
+
+	pmx_ts_int_release {
+		ts_as_int: ts_as_int {
+			mux {
+				pins = "gpio65";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio65";
+				drive-strength = <8>;
+				input-enable;
+				bias-disable;
+			};
+		};
+	};
+
+	pmx_ts_int_active {
+		ts_int_active: ts_int_active {
+			mux {
+				pins = "gpio65";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio65";
+				drive-strength = <8>;
+				bias-pull-up;
+				output-high;
+			};
+		};
+	};
+
+	pmx_ts_int_suspend {
+		ts_int_suspend: ts_int_suspend {
+			mux {
+				pins = "gpio65";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio65";
+				drive-strength = <8>;
+				bias-pull-down;
+				output-low;
+			};
+		};
+	};
+
+	/* Fingerprint reset — GPIO140 */
+	fp_reset {
+		fp_reset_low: fp_reset_low {
+			mux {
+				pins = "gpio140";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio140";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+
+		fp_reset_high: fp_reset_high {
+			mux {
+				pins = "gpio140";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio140";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+	};
+
+	/* Fingerprint IRQ — GPIO48 */
+	fp_irq {
+		fp_irq_active: fp_irq_active {
+			mux {
+				pins = "gpio48";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio48";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+
+	/* Fingerprint LDO 2.8V enable — GPIO47 */
+	fp_ldo_en {
+		fp_ldo_2v8_en: fp_ldo_2v8_en {
+			mux {
+				pins = "gpio47";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio47";
+				drive-strength = <2>;
+				bias-pull-up;
+				output-high;
+			};
+		};
+	};
+
+	/* Antenna presence detect — GPIO9 */
+	ant_check_irq {
+		ant_check_irq_state: ant_check_irq_state {
+			mux {
+				pins = "gpio9";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio9";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+	};
+};

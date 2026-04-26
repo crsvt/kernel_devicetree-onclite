@@ -1,0 +1,58 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+&pmi632_vadc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&backlight_therm_default &smb_therm_default>;
+
+	chan@53 {
+		label = "backlight_therm";
+	};
+};
+
+&pmi632_adc_tm {
+	chan@53 {
+		label = "backlight_therm";
+	};
+};
+
+&pmi632_gpios {
+	backlight_therm {
+		backlight_therm_default: backlight_therm_default {
+			pins = "gpio3";
+			bias-high-impedance;
+		};
+	};
+};
+
+&thermal_zones {
+	backlight-therm-adc {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmi632_adc_tm 0x53>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	quiet-therm-adc {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8953_adc_tm 0x11>;
+		thermal-governor = "user_space";
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+		};
+	};
+};

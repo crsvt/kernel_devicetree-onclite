@@ -1,0 +1,55 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+#include "panels/dsi-panel-boe-hx8394f-720p-video.dtsi"
+#include "panels/dsi-panel-shenchao-ili9881-720p-video.dtsi"
+#include "panels/dsi-panel-truly-otm1901a-720p-video.dtsi"
+
+/* Panel supply — L6 1.8V only (vdd entry removed, LCD uses LCDB) */
+&dsi_panel_pwr_supply {
+	/delete-node/ qcom,panel-supply-entry@0;
+};
+
+/* PHY timings for BOE hx8394f */
+&dsi_boe_hx8394f_720p_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+	qcom,mdss-dsi-panel-timings-phy-v2 = [1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 11 05 06 03 02 04 a0];
+};
+
+/* PHY timings for Shenchao ili9881 */
+&dsi_shenchao_ili9881_720p_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+	qcom,mdss-dsi-bl-min-level = <16>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-dsi-panel-timings-phy-v2 = [1f 1c 05 06 03 03 04 a0
+		1f 1c 05 06 03 03 04 a0
+		1f 1c 05 06 03 03 04 a0
+		1f 1c 05 06 03 03 04 a0
+		1f 10 05 06 03 03 04 a0];
+};
+
+/* PHY timings for Truly otm1901a */
+&dsi_truly_otm1901a_720p_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+	qcom,mdss-dsi-panel-timings-phy-v2 = [1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 1c 05 06 03 02 04 a0
+		1f 11 05 06 03 02 04 a0];
+};
+
+/* DSI controller — reset GPIO61, backlight GPIO136, LAB/IBB from LCDB */
+&mdss_dsi0 {
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
+	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
+
+	qcom,platform-te-gpio = <&tlmm 24 0>;
+	qcom,platform-reset-gpio = <&tlmm 61 0>;
+	qcom,platform-bklight-en-gpio = <&tlmm 136 0>;
+	lab-supply = <&lcdb_ldo_vreg>;
+	ibb-supply = <&lcdb_ncp_vreg>;
+};

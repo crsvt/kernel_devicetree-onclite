@@ -1,0 +1,50 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+&spmi_bus {
+	qcom,pm8953@0 {
+		qcom,power-on@800 {
+			qcom,pon_1 {
+				qcom,support-reset = <1>;
+				qcom,s1-timer = <4480>;
+				qcom,s2-timer = <2000>;
+				qcom,s2-type = <7>;
+			};
+
+			qcom,pon_3 {
+				qcom,pon-type = <3>;
+				qcom,pull-up = <1>;
+				qcom,support-reset = <1>;
+				qcom,s1-timer = <3072>;
+				qcom,s2-timer = <2000>;
+				qcom,s2-type = <1>;
+				qcom,use-bark;
+			};
+		};
+	};
+};
+
+&pmi632_flash0 {
+	qcom,current-ma = <1200>;
+	qcom,duration-ms = <1280>;
+	qcom,ires-ua = <12500>;
+	qcom,hdrm-voltage-mv = <400>;
+	qcom,hdrm-vol-hi-lo-win-mv = <100>;
+};
+
+&pmi632_torch0 {
+	qcom,max-current = <1200>;
+	qcom,current-ma = <200>;
+	qcom,ires-ua = <12500>;
+	qcom,hdrm-voltage-mv = <400>;
+	qcom,hdrm-vol-hi-lo-win-mv = <100>;
+};
+
+&flash_led {
+	qcom,flashlight_0 {
+		label = "flashlight";
+		qcom,led-name = "flashlight";
+		qcom,torch-name = "led:torch_0", "led:torch_1";
+		qcom,switch-name = "led:switch_0";
+		qcom,id = <0>;
+	};
+};

@@ -1,0 +1,19 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+/ {
+	mtp_batterydata: qcom,battery-data {
+		qcom,batt-id-range-pct = <15>;
+		#include "battery/qg-batterydata-atl-3900mah.dtsi"
+		#include "battery/qg-batterydata-light-3900mah.dtsi"
+		#include "battery/qg-batterydata-sunwoda-3900mah.dtsi"
+		#include "battery/qg-batterydata-share-3900mah.dtsi"
+	};
+};
+
+&pmi632_charger {
+	qcom,battery-data = <&mtp_batterydata>;
+};
+
+&pmi632_qg {
+	qcom,battery-data = <&mtp_batterydata>;
+};

@@ -1,0 +1,30 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+
+/dts-v1/;
+
+#include "sdm632.dtsi"
+#include "sdm450-pmi632.dtsi"
+#include "msm8953-audio.dtsi"
+#include "msm8953-mdss-panels.dtsi"
+
+#include "onclite/onclite-pinctrl.dtsi"
+#include "onclite/onclite-regulator.dtsi"
+#include "onclite/onclite-panel.dtsi"
+#include "onclite/onclite-battery.dtsi"
+#include "onclite/onclite-peripherals.dtsi"
+#include "onclite/onclite-audio.dtsi"
+#include "onclite/onclite-camera.dtsi"
+#include "onclite/onclite-memory.dtsi"
+#include "onclite/onclite-charger.dtsi"
+#include "onclite/onclite-pmic.dtsi"
+#include "onclite/onclite-thermal.dtsi"
+
+/ {
+	interrupt-parent = <&intc>;
+	model = "Qualcomm Technologies, Inc. SDM632 + PMI632 SOC";
+	compatible = "qcom,sdm450";
+	qcom,board-id = <0x0 0x0>;
+	qcom,msm-id = <0x15d 0x0>;
+	qcom,pmic-id = <0x10016 0x25 0x0 0x0>;
+	qcom,pmic-name = "PMI632";
+};
